@@ -13,7 +13,7 @@ User Function CRMA980()
     Local nQtdLinhas := 0
     Local cMsg       := ""
 
-    Local aObj       := {"TOTVS", "MATA010", "Cadastro de produtos", "", "", "WINDOWS"}
+    Local aObj       := {"TOTVS", "CRMA980", "Cadastro de produtos", "", "", "WINDOWS"}
 
     PRIVATE TESTE := ""
 
@@ -24,7 +24,7 @@ User Function CRMA980()
         lIsGrid     := ( Len( aParam ) > 3 )
 
         If cIdPonto == "FORMCOMMITTTSPRE" .And. cIdModel == "CRMA980"
-            aObj := {"TOTVS", "MATA010", "Cadastro de produtos", "", "", "WINDOWS"}
+            aObj := {"TOTVS", "CRMA980", "Cadastro de produtos", "", "", "WINDOWS"}
             TESTE := U_saveELK(,aObj,"")
             SB1->B1_ZLHREC := cValToChar(TESTE)
             M->B1_ZLHREC := cValToChar(TESTE)
