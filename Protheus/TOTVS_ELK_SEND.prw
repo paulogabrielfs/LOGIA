@@ -25,14 +25,14 @@ User Function sendELK(cxEmp, cxFili)
     DEFAULT cxEmp    := "99"
     DEFAULT cxFili   := "01"
 
-    If ValType(cxEmp) == "A"
-        cAuxEmp := cxEmp[1]
-        cxFili  := cxEmp[2]
-    Else
-        cAuxEmp := cxEmp
-    EndIf
+    // If ValType(cxEmp) == "A"
+    //     cAuxEmp := cxEmp[1]
+    //     cxFili  := cxEmp[2]
+    // Else
+    //     cAuxEmp := cxEmp
+    // EndIf
 
-    PREPARE ENVIRONMENT EMPRESA cAuxEmp FILIAL cxFili
+    // PREPARE ENVIRONMENT EMPRESA cAuxEmp FILIAL cxFili
 
     cURL          := ALLTRIM(SuperGetMV('ELK_TVSURL',,'http://35.184.80.233:9200'))
     cPATH         := ALLTRIM(SuperGetMV('ELK_PATH',,'/logia/protheus'))
@@ -121,7 +121,7 @@ User Function sendELK(cxEmp, cxFili)
     EndDo
     QRY_ELK->(DbCloseArea())
 
-    RESET ENVIRONMENT
+    // RESET ENVIRONMENT
 
 Return .T.
 

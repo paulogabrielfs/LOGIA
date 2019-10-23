@@ -35,8 +35,9 @@ If aParam <> NIL
               M->B1_ZLHREC := cValToChar(TESTE)
        ElseIf cIdPonto == 'FORMCOMMITTTSPOS'
             aObj := {"", "Cadastro de produtos", "", ""}
-            cTst := SB1->B1_ZLHREC
-            U_saveELK(,aObj,TESTE)
+            cTst := IIF(!Empty(SB1->B1_ZLHREC), SB1->B1_ZLHREC, M->B1_ZLHREC)
+              cTst := M->B1_ZLHREC
+            U_saveELK(,aObj,cTst)
             U_sendELK()
         EndIf
 
