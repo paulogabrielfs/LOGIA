@@ -29,15 +29,16 @@ If aParam <> NIL
        // EndIf
       
        If cIdPonto == 'FORMCOMMITTTSPRE'
-              aObj := {"TOTVS", "MATA010", "Cadastro de produtos", "", "", "WINDOWS"}
+              aObj := {"TOTVS", "MATA010", "", "", "", "WINDOWS"}
               TESTE := U_saveELK(,aObj,"")
               SB1->B1_ZLHREC := cValToChar(TESTE)
               M->B1_ZLHREC := cValToChar(TESTE)
        ElseIf cIdPonto == 'FORMCOMMITTTSPOS'
-            aObj := {"", "", "", ""}
+            aObj := {"", "Cadastro de produtos", "", ""}
             cTst := SB1->B1_ZLHREC
             U_saveELK(,aObj,TESTE)
-       EndIf
+            U_sendELK()
+        EndIf
 
 EndIf
 

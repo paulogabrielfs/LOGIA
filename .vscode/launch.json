@@ -22,6 +22,28 @@
 			"args": [],
 			"label": "APSDU",
 			"description": ""
+		},
+		{
+			"args": [
+				"(\"",
+				"99",
+				"\",\"",
+				"01",
+				"\")"
+			],
+			"label": "U_sendELK",
+			"description": "(\" 99 \",\" 01 \")"
+		},
+		{
+			"args": [
+				" (\" ",
+				"99",
+				" \",\" ",
+				"01",
+				" \")"
+			],
+			"label": "U_sendELK",
+			"description": " (\"  99  \",\"  01  \")"
 		}
 	],
 	"lastProgramExecuted": "SIGAMDI"

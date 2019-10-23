@@ -34,8 +34,8 @@ User Function sendELK(cxEmp, cxFili)
 
     PREPARE ENVIRONMENT EMPRESA cAuxEmp FILIAL cxFili
 
-    cURL          := ALLTRIM(SuperGetMV('ELK_TVSURL',,'http://35.188.216.245/elasticsearch'))
-    cPATH         := ALLTRIM(SuperGetMV('ELK_PATH',,'/totvs/ws'))
+    cURL          := ALLTRIM(SuperGetMV('ELK_TVSURL',,'http://35.184.80.233:9200'))
+    cPATH         := ALLTRIM(SuperGetMV('ELK_PATH',,'/logia/protheus'))
     cTable        := ALLTRIM(SuperGetMV('ELK_TABELA',,'ZLH'))
     cUser         := ALLTRIM(SuperGetMV('ELK_USER',,'user'))
     cPass         := ALLTRIM(SuperGetMV('ELK_PASS',,'eCF6yrLBY9DX'))
@@ -75,13 +75,7 @@ User Function sendELK(cxEmp, cxFili)
             DbSelectArea(cTable)
             &(cTable+"->(DBGOTO(QRY_ELK->R_E_C_N_O_))")
             RecLock(cTable, .F.)
-            &(cTable+"->"+cTable+"_ERRCOD") := "500"
-            &(cTable+"->"+cTable+"_ERRMSG") := "Internal server error"
-            &(cTable+"->"+cTable+"_ERROR ") := "True"
-            &(cTable+"->"+cTable+"_EPSTIM") := 10
-            &(cTable+"->"+cTable+"_STATUS") := "P"
-            &(cTable+"->"+cTable+"_TSFIM")  := &(cTable+"->"+cTable+"_TSINI") 
-            &(cTable+"->"+cTable+"_OBJOUT") := '{"errorCode":500, "errorMessage":"Internal server error"}'
+            &(cTable+"->(dbDelete())")
             &(cTable+"->(MsUnLock())")
         EndIf
 
@@ -104,7 +98,7 @@ User Function sendELK(cxEmp, cxFili)
         oRestClient := FWRest():New(cURL)
         aHeader := {}
         oRestClient:setPath(cPATH)
-        aadd(aHeader,'Authorization:  BASIC '+cAuth)
+        // aadd(aHeader,'Authorization:  BASIC '+cAuth)
         aadd(aHeader,'Content-Type:application/json')
         cRet := EncodeUTF8(cRet)
         oRestClient:SetPostParams(cRet)

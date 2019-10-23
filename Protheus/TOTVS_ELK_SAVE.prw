@@ -47,5 +47,4 @@ User Function saveELK(lRecorded,aZLH,cRec)
     EndIf
 
     MsUnLock() // Confirma e finaliza a operacao
-
 Return cCod
